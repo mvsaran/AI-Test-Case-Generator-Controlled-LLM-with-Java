@@ -1,0 +1,34 @@
+Test Case ID,Title,Objective,Priority,Type,Negative,Auto Candidate,Preconditions,Test Steps,Test Data,Expected Result
+TC_001,Successful user registration with valid data,Verify that a user can register successfully with valid data.,High,Functional,No,Yes,No existing account with the test email.,"1. Navigate to the registration page.
+2. Enter valid First Name, Last Name, Email, Password, and Confirm Password.
+3. Submit the registration form.","Input: John, Doe, john.doe@example.com, Password1!, Password1!
+Notes: Ensure email is unique in the system.",User is registered successfully and a verification email is sent.
+TC_002,Registration fails with already registered email,Ensure registration fails if the email is already registered.,High,Negative,Yes,Yes,An account already exists with the test email.,"1. Navigate to the registration page.
+2. Enter valid First Name, Last Name, already registered Email, Password, and Confirm Password.
+3. Submit the registration form.","Input: Jane, Doe, jane.doe@example.com, Password1!, Password1!
+Notes: Email is already registered in the system.",An error message is displayed indicating the email is already registered.
+TC_003,Registration fails with invalid email format,Ensure registration fails if the email format is invalid.,Medium,Validation,Yes,Yes,No existing account with the test email.,"1. Navigate to the registration page.
+2. Enter valid First Name, Last Name, invalid Email format, Password, and Confirm Password.
+3. Submit the registration form.","Input: Alice, Smith, alice.smith@com, Password1!, Password1!
+Notes: Email does not follow the correct format.",An error message is displayed indicating the email format is invalid.
+TC_004,Registration fails with mismatched passwords,Ensure registration fails if Password and Confirm Password do not match.,Medium,Validation,Yes,Yes,No existing account with the test email.,"1. Navigate to the registration page.
+2. Enter valid First Name, Last Name, Email, Password, and mismatched Confirm Password.
+3. Submit the registration form.","Input: Bob, Brown, bob.brown@example.com, Password1!, Password2!
+Notes: Confirm Password does not match Password.",An error message is displayed indicating passwords do not match.
+TC_005,Registration fails with short password,Ensure registration fails if the password is shorter than 8 characters.,Medium,Boundary,Yes,Yes,No existing account with the test email.,"1. Navigate to the registration page.
+2. Enter valid First Name, Last Name, Email, and a short Password.
+3. Submit the registration form.","Input: Charlie, Green, charlie.green@example.com, Pass1!, Pass1!
+Notes: Password is less than 8 characters.",An error message is displayed indicating the password is too short.
+TC_006,Registration fails with missing required fields,Ensure registration fails if required fields are missing.,High,Validation,Yes,Yes,No existing account with the test email.,"1. Navigate to the registration page.
+2. Leave First Name and Last Name empty.
+3. Enter valid Email, Password, and Confirm Password.
+4. Submit the registration form.","Input: , , valid.email@example.com, Password1!, Password1!
+Notes: First Name and Last Name are required fields.",An error message is displayed indicating required fields are missing.
+TC_007,Registration with maximum length names,Verify registration succeeds with maximum length First Name and Last Name.,Medium,Boundary,No,Yes,No existing account with the test email.,"1. Navigate to the registration page.
+2. Enter 50-character First Name and Last Name, valid Email, Password, and Confirm Password.
+3. Submit the registration form.","Input: Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb, max.length@example.com, Password1!, Password1!
+Notes: First Name and Last Name are at maximum length.",User is registered successfully and a verification email is sent.
+TC_008,Registration fails with numbers in name fields,Ensure registration fails if First Name or Last Name contains numbers.,Medium,Validation,Yes,Yes,No existing account with the test email.,"1. Navigate to the registration page.
+2. Enter First Name or Last Name with numbers, valid Email, Password, and Confirm Password.
+3. Submit the registration form.","Input: John123, Doe456, john.doe123@example.com, Password1!, Password1!
+Notes: Names contain numbers which are not allowed.",An error message is displayed indicating names cannot contain numbers.

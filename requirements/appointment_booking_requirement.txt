@@ -1,0 +1,27 @@
+FEATURE: Appointment Booking
+
+REQUIREMENT:
+A registered patient should be able to book a medical appointment through the system.
+
+DETAILED BEHAVIOR:
+- Patient must be logged in to book an appointment.
+- Patient selects: Doctor, Specialty, Clinic Location, Date, and Time Slot.
+- Only available time slots should be shown for the selected date.
+- Past dates must not be selectable in the date picker.
+- Today's date should be selectable only if time slots are still available.
+- If no slots are available for a selected date, an appropriate message must be displayed.
+- Patient receives a confirmation notification (email/SMS) after successful booking.
+- Patient can view, reschedule, or cancel their upcoming appointments.
+- Cancellation is allowed up to 24 hours before the appointment time.
+
+VALIDATION RULES:
+- Doctor must be selected before picking date.
+- Date must be today or a future date.
+- Time slot must be available (not already booked by another patient).
+- Insurance information (if applicable) must be provided.
+
+BUSINESS RULES:
+- Each patient can have a maximum of 3 active (upcoming) appointments at a time.
+- Appointments cannot be booked on public holidays.
+- Emergency appointments bypass the standard booking flow.
+- Doctors can block specific time slots.

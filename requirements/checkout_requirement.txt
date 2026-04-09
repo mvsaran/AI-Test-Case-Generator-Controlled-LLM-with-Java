@@ -1,0 +1,28 @@
+FEATURE: Checkout Flow
+
+REQUIREMENT:
+A logged-in customer with items in their shopping cart should be able to complete a purchase.
+
+DETAILED BEHAVIOR:
+- Customer reviews cart items, quantities, and prices on the checkout page.
+- Customer selects a shipping address (saved or new).
+- Customer selects a shipping method (Standard, Express, Overnight).
+- Customer enters or selects a payment method (Credit Card, Debit Card, PayPal, UPI).
+- An order summary is shown before final confirmation.
+- Customer clicks "Place Order" to confirm the purchase.
+- On success, order confirmation page and email are sent.
+- On payment failure, the user must be shown an appropriate error and allowed to retry.
+
+VALIDATION RULES:
+- Cart must not be empty to proceed to checkout.
+- At least one shipping address is required.
+- Payment details must be valid before order can be placed.
+- CVV should not be stored after transaction.
+- Order total must match cart total including shipping costs.
+
+BUSINESS RULES:
+- Promo codes can be applied at checkout for discounts.
+- Out-of-stock items should be removed from cart before checkout.
+- International shipping requires additional address verification.
+- Minimum order value may be required depending on shipping method.
+- Tax calculation depends on the shipping region.

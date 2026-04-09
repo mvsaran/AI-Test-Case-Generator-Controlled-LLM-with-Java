@@ -1,0 +1,24 @@
+FEATURE: User Login
+
+REQUIREMENT:
+User should be able to log in to the application using a registered email address and password.
+
+DETAILED BEHAVIOR:
+- If credentials are valid, user is redirected to the dashboard.
+- If credentials are invalid, a clear error message must be shown.
+- Password field must be masked (hidden characters).
+- Login button should be disabled until both fields are filled.
+- Maximum 5 failed login attempts allowed; after that, account is locked for 15 minutes.
+- Remember Me option should persist the session for 30 days.
+- Forgot Password link must be available on the login page.
+- Links to the registration page should be available.
+
+VALIDATION RULES:
+- Email must be a valid format (e.g., user@domain.com).
+- Password should not be shown in plain text.
+- Both fields are mandatory.
+
+BUSINESS RULES:
+- Unverified accounts should not be allowed to log in.
+- Admins can log in with a different set of credentials.
+- System should support SSO (Single Sign-On) in future.

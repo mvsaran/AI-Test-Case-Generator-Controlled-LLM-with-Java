@@ -1,0 +1,36 @@
+# ==============================
+# AI Test Case Generator
+# ==============================
+
+# Environment / Secrets
+.env
+
+# Maven build output
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.classpath
+*.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+
+# Log files
+*.log
+
+# Output folder (keep structure but ignore generated content)
+output/generated_testcases.json
+output/summary.txt
+output/raw_response_debug.txt

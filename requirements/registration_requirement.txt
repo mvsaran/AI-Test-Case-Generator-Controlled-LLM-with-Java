@@ -1,0 +1,27 @@
+FEATURE: User Registration
+
+REQUIREMENT:
+A new user should be able to create an account by filling in a registration form.
+
+DETAILED BEHAVIOR:
+- Registration form requires: First Name, Last Name, Email, Password, Confirm Password.
+- Email must be unique across the system.
+- If email is already registered, show an appropriate error.
+- Password must be minimum 8 characters long.
+- Password must contain at least one uppercase letter, one number, and one special character.
+- Confirm Password must match the Password field.
+- On successful registration, a verification email is sent to the user.
+- User must verify email before logging in.
+- A success message is shown after registration form submission.
+
+VALIDATION RULES:
+- First Name and Last Name: Required, max 50 characters, no numbers allowed.
+- Email: Required, must match email format, must be unique.
+- Password: Required, min 8 chars, must meet complexity rules.
+- Confirm Password: Must exactly match Password field.
+- Phone Number (optional): If provided, must be a valid format.
+
+BUSINESS RULES:
+- Users under 13 years of age cannot register.
+- Admin accounts cannot be created via registration form.
+- Registration should work without social media login initially.
