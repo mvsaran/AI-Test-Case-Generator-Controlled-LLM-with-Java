@@ -601,49 +601,34 @@ When the application runs successfully, you will see:
 The project includes **36 unit tests** organized in 3 test classes:
 
 ### `PromptBuilderTest.java` — 10 Tests
-Tests the prompt generation module:
-- ✅ System prompt is not empty
-- ✅ System prompt enforces JSON-only output
-- ✅ System prompt mentions no-markdown rule
-- ✅ System prompt requires negative scenarios
-- ✅ System prompt lists all priority enum values
-- ✅ User prompt embeds the requirement text
-- ✅ User prompt specifies minimum scenario count
-- ✅ User prompt enforces priority enums
-- ✅ User prompt enforces type enums
-- ✅ Correction prompt includes bad response and error summary
+**Purpose:** Ensures the AI is being asked the *right questions with the right rules.*
+Because LLMs are highly sensitive to prompt wording, this class verifies that your Java application is injecting the strict safety constraints into the prompt before sending it.
+
+**What it checks:**
+- ✅ System prompt enforces JSON-only output and no-markdown rules.
+- ✅ System prompt requires negative scenarios and lists all priority enum values.
+- ✅ User prompt embeds requirement text, specifies scenario counts, and enforces enums.
+- ✅ Correction prompt includes the failed response and error summary for the retry loop.
 
 ### `SchemaValidatorTest.java` — 14 Tests
-Tests the JSON schema validation module:
-- ✅ Valid JSON passes schema validation
-- ✅ Valid JSON has no errors
-- ✅ Missing `feature_name` fails
-- ✅ Missing `requirement_summary` fails
-- ✅ Missing `test_scenarios` fails
-- ✅ Too few test scenarios (< 3) fails
-- ✅ Invalid priority `"Critical"` fails
-- ✅ Invalid type `"Smoke"` fails
-- ✅ Fewer than 3 `test_steps` fails
-- ✅ Completely malformed JSON fails
-- ✅ Empty string fails
-- ✅ Null input fails
-- ✅ Error summary is `"No errors"` for valid JSON
-- ✅ Error summary has messages for invalid JSON
+**Purpose:** Ensures the raw data returned by the AI is mathematically and structurally flawless.
+This class acts as the "Bouncer" for the application, verifying that the AI's response matches the exact structure required by our JSON Schema (Draft-07).
+
+**What it checks:**
+- ✅ Valid JSON passing and reporting "No errors".
+- ✅ Mandatory fields presence (feature_name, requirement_summary, test_scenarios).
+- ✅ Negative constraints (fails on < 3 scenarios, invalid enums like "Critical", or < 3 steps).
+- ✅ Robustness against edge cases (malformed JSON, empty strings, null inputs).
 
 ### `GeneratorFlowTest.java` — 12 Tests
-Integration-style tests for the full parse → validate → normalize flow:
-- ✅ Parser parses valid JSON into `TestCaseResponse`
-- ✅ Parsed response contains correct test case data
-- ✅ Parser throws exception for invalid JSON
-- ✅ `isValidJson()` returns true for valid JSON
-- ✅ `isValidJson()` returns false for invalid JSON
-- ✅ Normalizer reassigns sequential `test_case_id` values
-- ✅ Normalizer removes duplicate scenarios by title
-- ✅ Normalizer fixes invalid priority to `"Medium"`
-- ✅ Normalizer fixes invalid type to `"Functional"`
-- ✅ Normalizer pads `test_steps` to minimum of 3
-- ✅ Full flow (parse → validate → normalize) succeeds for valid JSON
-- ✅ `TestCaseResponse` helper methods count correctly
+**Purpose:** Tests the end-to-end internal mechanics of parsing, validating, and sanitizing the AI's response.
+This ensures that the "Data Sweeper" (OutputNormalizer) can handle successfully validated JSON and turn it into perfect Java Objects.
+
+**What it checks:**
+- ✅ Successful parsing of JSON into `TestCaseResponse` models.
+- ✅ Normalization logic: Seqential ID reassignment (`TC_001`, `TC_002`), duplicate removal, and enum fixing.
+- ✅ Defaulting behavior: Ensures hallucinated enum values are safely defaulted back to "Functional" or "Medium".
+- ✅ Pad logic: Ensures test steps are padded to the minimum requirement if the AI falls short.
 
 ### Run All Tests
 
